@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-    [HideInInspector]
-    public bool grounded;
 
     private PlayerStates _playerStates;
     // Start is called before the first frame update
@@ -19,11 +17,19 @@ public class CollisionManager : MonoBehaviour
     {
         
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
-        {        
-                //_playerStates.BehaviourSubscriptionChecker(PlayerStates.Behaviour.grounded);
+        {
+            _playerStates.ChangeSurface(PlayerStates.Surface.ground);
+        }
+
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject)
+        {
+            _playerStates.ChangeSurface(PlayerStates.Surface.air);
         }
     }
 }

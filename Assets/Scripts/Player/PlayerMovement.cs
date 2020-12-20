@@ -9,24 +9,27 @@ public class PlayerMovement : MonoBehaviour
     public int speed;
     [Tooltip("The Jump Height Of Player")]
     [Header("Players Jump Height")]
-    [Range(2,5)]
+    [Range(100,1000)]
     public int _JumpSpeed;
 
     private Vector3 horizontalAXES;
 
     private Rigidbody2D rb;
     private PlayerStates playerStates;
-    private CollisionManager collisionManager;
 
     private bool isMoving;
+    private bool canJump;
 
     private PlayerStates.Behaviour currentBehaviour;
+
+    private PlayerStates.Surface currentSurface;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerStates = GetComponent<PlayerStates>();
-        playerStates.onPlayerBehaviourChange += MovementStateManager;
+        PlayerStates.onPlayerBehaviourChange += MovementStateManager;
+        PlayerStates.onSurfaceChange += JumpManager;
     }
 
     // Update is called once per frame
@@ -34,6 +37,10 @@ public class PlayerMovement : MonoBehaviour
     {
         HorizontalMovement(isMoving);
         MovementStateChanger();
+        DirectionStateManager();
+        JumpState(KeyCode.Space, canJump);
+
+
     }
      void MovementStateManager(PlayerStates.Behaviour behaviour)
     {
@@ -46,10 +53,14 @@ public class PlayerMovement : MonoBehaviour
         {
             StopMoving();
         }
-       if (currentBehaviour == PlayerStates.Behaviour.jumping)
-        {
-            Jump(KeyCode.Space);
-        }
+    }
+    private void StartJumping()
+    {
+        canJump = true;
+    }
+    private void StopJumping()
+    {
+        canJump = false;
     }
     private void StartMoving()
     {
@@ -62,28 +73,62 @@ public class PlayerMovement : MonoBehaviour
     private void HorizontalMovement(bool isMoving)
     {
         horizontalAXES.x = Input.GetAxisRaw("Horizontal");
-        if (isMoving)
+        if (isMoving&&canJump)
         {
-            Vector2.MoveTowards(transform.position, transform.position+ horizontalAXES.normalized, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, transform.position + horizontalAXES.normalized, speed * Time.deltaTime);
 
         }
-  
+
     }
     private void MovementStateChanger()
     {
-        if (horizontalAXES.x != 0&&currentBehaviour!=PlayerStates.Behaviour.walking)
+        if (horizontalAXES.x != 0)
         {
             playerStates.ChangeBehaviour(PlayerStates.Behaviour.walking);
         }
-        else if (currentBehaviour!=PlayerStates.Behaviour.idle)
+        else
         {
             playerStates.ChangeBehaviour(PlayerStates.Behaviour.idle);
         }
     }
-    private void Jump(KeyCode jumpKey)
-    {   if (Input.GetKey(jumpKey))
+    private void DirectionStateManager()
+    {
+        if (horizontalAXES.x >= 0)
         {
-            rb.AddForce(Vector2.up * _JumpSpeed * Time.deltaTime);
+            playerStates.ChangeDirection(PlayerStates.PlayerDirection.right);
         }
+        else
+        {
+            playerStates.ChangeDirection(PlayerStates.PlayerDirection.left);
+        }
+    }
+    private void JumpManager(PlayerStates.Surface surface)
+    {
+        currentSurface = surface;
+        if (currentSurface == PlayerStates.Surface.ground)
+        {
+            StartJumping();
+        }
+        else
+        {
+            StopJumping();
+        }
+    }
+    private void JumpState(KeyCode jumpKey,bool canJump)
+    {   
+        if (canJump)
+        {
+            if (Input.GetKeyDown(jumpKey))
+            {
+                StartCoroutine(JumpWithAnimationDelay());
+            }
+        }
+  
+    }
+    private IEnumerator JumpWithAnimationDelay()
+    {
+        playerStates.ChangeBehaviour(PlayerStates.Behaviour.jumping);
+        yield return new WaitForSeconds(0.2F);
+        rb.AddForce(Vector2.up * _JumpSpeed);
     }
 }
