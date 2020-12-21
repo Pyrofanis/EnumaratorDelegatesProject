@@ -21,6 +21,7 @@ public class Fighting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             playerStates.ChangeBehaviour(PlayerStates.Behaviour.attacking);
+            //add stuff to do like Inv Bullets And Stuff
         }
     }
 }

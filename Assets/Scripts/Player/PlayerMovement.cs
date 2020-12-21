@@ -71,12 +71,13 @@ public class PlayerMovement : MonoBehaviour
         isMoving = false;
     }
     private void HorizontalMovement(bool isMoving)
-    {
+    {   
         horizontalAXES.x = Input.GetAxisRaw("Horizontal");
-        if (isMoving&&canJump)
+        if (isMoving)
         {
-            transform.position = Vector2.MoveTowards(transform.position, transform.position + horizontalAXES.normalized, speed * Time.deltaTime);
-
+            rb.position = Vector2.MoveTowards(rb.position, transform.position + horizontalAXES.normalized, speed * Time.deltaTime);
+            //transform.position = Vector2.MoveTowards(transform.position, transform.position + horizontalAXES, speed * Time.deltaTime);
+            //Debug.Log("Horizontal Axe: " + horizontalAXES + ", Add" + (transform.position + horizontalAXES));
         }
 
     }
