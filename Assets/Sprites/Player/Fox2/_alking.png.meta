@@ -142,7 +142,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 34
         height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -161,9 +161,9 @@ TextureImporter:
       name: _alking_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 39
         y: 0
-        width: 32
+        width: 34
         height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -182,9 +182,9 @@ TextureImporter:
       name: _alking_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 79
         y: 0
-        width: 32
+        width: 34
         height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -203,9 +203,9 @@ TextureImporter:
       name: _alking_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 116
         y: 0
-        width: 32
+        width: 33
         height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

@@ -151,7 +151,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 34
         height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -170,9 +170,9 @@ TextureImporter:
       name: _ighting_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 57
         y: 0
-        width: 32
+        width: 34
         height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -191,9 +191,9 @@ TextureImporter:
       name: _ighting_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 108
         y: 0
-        width: 32
+        width: 34
         height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -212,9 +212,9 @@ TextureImporter:
       name: _ighting_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 158
         y: 0
-        width: 32
+        width: 34
         height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -233,9 +233,9 @@ TextureImporter:
       name: _ighting_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 206
         y: 0
-        width: 32
+        width: 34
         height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -254,9 +254,9 @@ TextureImporter:
       name: _ighting_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 255
         y: 0
-        width: 32
+        width: 34
         height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -275,9 +275,9 @@ TextureImporter:
       name: _ighting_6
       rect:
         serializedVersion: 2
-        x: 192
+        x: 314
         y: 0
-        width: 32
+        width: 33
         height: 37
       alignment: 0
       pivot: {x: 0, y: 0}

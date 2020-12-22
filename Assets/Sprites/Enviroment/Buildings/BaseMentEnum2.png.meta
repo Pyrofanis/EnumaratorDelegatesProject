@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: d3de42e2aab244c43ace391d8e82c224
+guid: 40f15bf0083a9854fa4ea219594184c7
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -8915914046085696055
-    second: Jamping_Landing_0
-  - first:
-      213: 1692191124627699321
-    second: Jamping_Landing_1
-  - first:
-      213: -2561410228214014301
-    second: Jamping_Landing_2
-  - first:
-      213: 4550979141337374304
-    second: Jamping_Landing_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -53,10 +41,10 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
-  spriteExtrude: 0
+  spriteMode: 1
+  spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 7
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -135,91 +123,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Jamping_Landing_0
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 0
-        width: 28
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c57523e96f444480800000000000000
-      internalID: -8915914046085696055
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jamping_Landing_1
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 0
-        width: 32
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 976b08bbcdedb7710800000000000000
-      internalID: 1692191124627699321
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jamping_Landing_2
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 0
-        width: 32
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ae5047e7fa047cd0800000000000000
-      internalID: -2561410228214014301
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jamping_Landing_3
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 0
-        width: 34
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 06e50abba63582f30800000000000000
-      internalID: 4550979141337374304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

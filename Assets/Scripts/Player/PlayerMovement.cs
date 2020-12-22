@@ -23,9 +23,17 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStates.Behaviour currentBehaviour;
 
     private PlayerStates.Surface currentSurface;
+
+    private PlayerControlls inputActions;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        inputActions = new PlayerControlls();
+    }
     void Start()
     {
+        inputActions.MainControlls.JumpAction.performed += _ => JumpState(canJump);
+        inputActions.Enable();
         rb = GetComponent<Rigidbody2D>();
         playerStates = GetComponent<PlayerStates>();
         PlayerStates.onPlayerBehaviourChange += MovementStateManager;
@@ -38,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
         HorizontalMovement(isMoving);
         MovementStateChanger();
         DirectionStateManager();
-        JumpState(KeyCode.Space, canJump);
 
 
     }
@@ -72,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void HorizontalMovement(bool isMoving)
     {   
-        horizontalAXES.x = Input.GetAxisRaw("Horizontal");
+        horizontalAXES.x = inputActions.MainControlls.Move.ReadValue<float>();
         if (isMoving)
         {
             rb.position = Vector2.MoveTowards(rb.position, transform.position + horizontalAXES.normalized, speed * Time.deltaTime);
@@ -115,14 +122,11 @@ public class PlayerMovement : MonoBehaviour
             StopJumping();
         }
     }
-    private void JumpState(KeyCode jumpKey,bool canJump)
+    private void JumpState(bool canJump)
     {   
         if (canJump)
-        {
-            if (Input.GetKeyDown(jumpKey))
-            {
+        {         
                 StartCoroutine(JumpWithAnimationDelay());
-            }
         }
   
     }
