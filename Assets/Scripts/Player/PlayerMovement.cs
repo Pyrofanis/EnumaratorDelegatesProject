@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
     {
         HorizontalMovement(isMoving);
         MovementStateChanger();
-        DirectionStateManager();
 
 
     }
@@ -99,17 +98,7 @@ public class PlayerMovement : MonoBehaviour
             playerStates.ChangeBehaviour(PlayerStates.Behaviour.idle);
         }
     }
-    private void DirectionStateManager()
-    {
-        if (horizontalAXES.x >= 0)
-        {
-            playerStates.ChangeDirection(PlayerStates.PlayerDirection.right);
-        }
-        else
-        {
-            playerStates.ChangeDirection(PlayerStates.PlayerDirection.left);
-        }
-    }
+   
     private void JumpManager(PlayerStates.Surface surface)
     {
         currentSurface = surface;

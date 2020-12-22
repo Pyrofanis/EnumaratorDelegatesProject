@@ -28,6 +28,14 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Direction",
+                    "type": "Value",
+                    "id": "58b50e99-c8a2-460b-a3a4-68554738a1ca",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -93,6 +101,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "SchemeGeneral",
+                    "action": "JumpAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d60573cc-527a-4e57-a54d-c4785256c29c",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "JumpAction",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -272,6 +291,28 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c37faee1-1153-4288-90bf-5840d27aa615",
+                    "path": "<Mouse>/scroll/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "SchemeGeneral",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f67955e2-d9e6-4bcf-b46c-9e6c5d606140",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "SchemeGeneral",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -41,6 +41,14 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Direction"",
+                    ""type"": ""Value"",
+                    ""id"": ""58b50e99-c8a2-460b-a3a4-68554738a1ca"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -106,6 +114,17 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""SchemeGeneral"",
+                    ""action"": ""JumpAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d60573cc-527a-4e57-a54d-c4785256c29c"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""JumpAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -285,6 +304,28 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c37faee1-1153-4288-90bf-5840d27aa615"",
+                    ""path"": ""<Mouse>/scroll/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""SchemeGeneral"",
+                    ""action"": ""Direction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f67955e2-d9e6-4bcf-b46c-9e6c5d606140"",
+                    ""path"": ""<Gamepad>/leftStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""SchemeGeneral"",
+                    ""action"": ""Direction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -323,6 +364,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         m_MainControlls_JumpAction = m_MainControlls.FindAction("JumpAction", throwIfNotFound: true);
         m_MainControlls_Attack = m_MainControlls.FindAction("Attack", throwIfNotFound: true);
         m_MainControlls_Move = m_MainControlls.FindAction("Move", throwIfNotFound: true);
+        m_MainControlls_Direction = m_MainControlls.FindAction("Direction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -375,6 +417,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
     private readonly InputAction m_MainControlls_JumpAction;
     private readonly InputAction m_MainControlls_Attack;
     private readonly InputAction m_MainControlls_Move;
+    private readonly InputAction m_MainControlls_Direction;
     public struct MainControllsActions
     {
         private @PlayerControlls m_Wrapper;
@@ -382,6 +425,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         public InputAction @JumpAction => m_Wrapper.m_MainControlls_JumpAction;
         public InputAction @Attack => m_Wrapper.m_MainControlls_Attack;
         public InputAction @Move => m_Wrapper.m_MainControlls_Move;
+        public InputAction @Direction => m_Wrapper.m_MainControlls_Direction;
         public InputActionMap Get() { return m_Wrapper.m_MainControlls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -400,6 +444,9 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnMove;
+                @Direction.started -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirection;
+                @Direction.performed -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirection;
+                @Direction.canceled -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirection;
             }
             m_Wrapper.m_MainControllsActionsCallbackInterface = instance;
             if (instance != null)
@@ -413,6 +460,9 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Direction.started += instance.OnDirection;
+                @Direction.performed += instance.OnDirection;
+                @Direction.canceled += instance.OnDirection;
             }
         }
     }
@@ -431,5 +481,6 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         void OnJumpAction(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+        void OnDirection(InputAction.CallbackContext context);
     }
 }
