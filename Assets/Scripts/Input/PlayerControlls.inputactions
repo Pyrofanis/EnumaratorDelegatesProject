@@ -31,9 +31,17 @@
                 },
                 {
                     "name": "Direction",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "58b50e99-c8a2-460b-a3a4-68554738a1ca",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DirectionMouse",
+                    "type": "Value",
+                    "id": "3a316208-6213-4311-9cae-8a0a5e9f1f8c",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -109,7 +117,7 @@
                     "name": "",
                     "id": "d60573cc-527a-4e57-a54d-c4785256c29c",
                     "path": "<Gamepad>/leftStick/up",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "JumpAction",
@@ -293,24 +301,46 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "c37faee1-1153-4288-90bf-5840d27aa615",
-                    "path": "<Mouse>/scroll/x",
+                    "name": "1D AxisGamePad",
+                    "id": "580488eb-7eb0-41c7-9621-a1b6a5e071be",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Direction",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Negative",
+                    "id": "3ee0a798-5d0c-4e51-9c59-02eebde918f0",
+                    "path": "<Gamepad>/rightStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "SchemeGeneral",
                     "action": "Direction",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "f67955e2-d9e6-4bcf-b46c-9e6c5d606140",
-                    "path": "<Gamepad>/leftStick/x",
+                    "name": "Positive",
+                    "id": "9ffae00e-6845-4f94-a0d2-0331c4a3feb3",
+                    "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "SchemeGeneral",
                     "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "3e31aaf0-8dfe-474e-979d-6dabcd8c0bc5",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "SchemeGeneral",
+                    "action": "DirectionMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

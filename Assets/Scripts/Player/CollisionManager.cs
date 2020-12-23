@@ -21,16 +21,10 @@ public class CollisionManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            _playerStates.ChangeBehaviour(PlayerStates.Behaviour.jumping);
             _playerStates.ChangeSurface(PlayerStates.Surface.ground);
         }
 
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            _playerStates.ChangeSurface(PlayerStates.Surface.ground);
-        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {

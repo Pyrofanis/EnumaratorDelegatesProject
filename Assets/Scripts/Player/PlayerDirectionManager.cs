@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDirectionManager : MonoBehaviour
-{   private PlayerControlls inputActions ;
-    
-    private float direction;
-
-    private Vector2 mouseDirection;
+{  
+    private PlayerControlls inputActions ;   
 
     private PlayerStates player;
+
+    public bool controllersInUse;
+
+    Vector3 currentMousePos;
     private void Awake()
     {
         player = GetComponent<PlayerStates>();
@@ -19,6 +20,7 @@ public class PlayerDirectionManager : MonoBehaviour
     {
         inputActions = new PlayerControlls();
         inputActions.Enable();
+        currentMousePos = Vector3.zero;
 
     }
 
@@ -26,27 +28,51 @@ public class PlayerDirectionManager : MonoBehaviour
     void Update()
     {
         DirectionManager();
-        ResetInput();
+        CheckIfControllersAreBeingUsed();
     }
     private void DirectionManager()
-    {   
-        direction = inputActions.MainControlls.Direction.ReadValue<float>();
-        //mouseDirection.x = (inputActions.MainControlls.DirectionMouse.ReadValue<Vector2>().x - transform.position.x);
-        Debug.Log(direction);
-        if (direction .Equals(1)|| mouseDirection.normalized.x.Equals(1))
+    {
+        if (Mathf.Approximately(DirectionOfCharacter(), 1))
         {
             player.ChangeDirection(PlayerStates.PlayerDirection.right);
         }
-        if (direction.Equals(-1)||mouseDirection.normalized.x.Equals(-1))
+        if (Mathf.Approximately(DirectionOfCharacter(), -1))
         {
             player.ChangeDirection(PlayerStates.PlayerDirection.left);
         }
     }
-    private void ResetInput()
+    private float DirectionOfCharacter()
     {
-     if (direction.Equals(1)||direction.Equals(-1))
+        Vector2 MousePixelPos = inputActions.MainControlls.DirectionMouse.ReadValue<Vector2>();
+        float mouseWorldPosition = Camera.main.ScreenToWorldPoint(MousePixelPos).x;
+        float mousePosRelativeToPlayer = Mathf.Clamp(mouseWorldPosition - transform.position.x, -1, 1);
+        if (controllersInUse)
         {
-            mouseDirection.x = 0;
-        }   
+            return inputActions.MainControlls.Direction.ReadValue<float>();
+        }
+
+        else 
+        {
+            return mousePosRelativeToPlayer;
+
+        }
     }
+    private void CheckIfControllersAreBeingUsed() 
+    {  
+
+        Vector2 MousePixelPos = inputActions.MainControlls.DirectionMouse.ReadValue<Vector2>();
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(MousePixelPos);
+        if (inputActions.MainControlls.Direction.ReadValue<float>() != 0)
+        {
+            controllersInUse = true;
+            currentMousePos = mouseWorldPosition;
+
+        }
+        else if (currentMousePos!= mouseWorldPosition)
+        {
+            controllersInUse = false;
+        }
+
+    }
+
 }

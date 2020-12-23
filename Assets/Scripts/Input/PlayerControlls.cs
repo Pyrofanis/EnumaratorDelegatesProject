@@ -44,9 +44,17 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Direction"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""58b50e99-c8a2-460b-a3a4-68554738a1ca"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DirectionMouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""3a316208-6213-4311-9cae-8a0a5e9f1f8c"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -122,7 +130,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""d60573cc-527a-4e57-a54d-c4785256c29c"",
                     ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""JumpAction"",
@@ -306,24 +314,46 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""c37faee1-1153-4288-90bf-5840d27aa615"",
-                    ""path"": ""<Mouse>/scroll/x"",
+                    ""name"": ""1D AxisGamePad"",
+                    ""id"": ""580488eb-7eb0-41c7-9621-a1b6a5e071be"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Direction"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""3ee0a798-5d0c-4e51-9c59-02eebde918f0"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""SchemeGeneral"",
                     ""action"": ""Direction"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""f67955e2-d9e6-4bcf-b46c-9e6c5d606140"",
-                    ""path"": ""<Gamepad>/leftStick/x"",
+                    ""name"": ""Positive"",
+                    ""id"": ""9ffae00e-6845-4f94-a0d2-0331c4a3feb3"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""SchemeGeneral"",
                     ""action"": ""Direction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e31aaf0-8dfe-474e-979d-6dabcd8c0bc5"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""SchemeGeneral"",
+                    ""action"": ""DirectionMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -365,6 +395,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         m_MainControlls_Attack = m_MainControlls.FindAction("Attack", throwIfNotFound: true);
         m_MainControlls_Move = m_MainControlls.FindAction("Move", throwIfNotFound: true);
         m_MainControlls_Direction = m_MainControlls.FindAction("Direction", throwIfNotFound: true);
+        m_MainControlls_DirectionMouse = m_MainControlls.FindAction("DirectionMouse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -418,6 +449,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
     private readonly InputAction m_MainControlls_Attack;
     private readonly InputAction m_MainControlls_Move;
     private readonly InputAction m_MainControlls_Direction;
+    private readonly InputAction m_MainControlls_DirectionMouse;
     public struct MainControllsActions
     {
         private @PlayerControlls m_Wrapper;
@@ -426,6 +458,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_MainControlls_Attack;
         public InputAction @Move => m_Wrapper.m_MainControlls_Move;
         public InputAction @Direction => m_Wrapper.m_MainControlls_Direction;
+        public InputAction @DirectionMouse => m_Wrapper.m_MainControlls_DirectionMouse;
         public InputActionMap Get() { return m_Wrapper.m_MainControlls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -447,6 +480,9 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                 @Direction.started -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirection;
                 @Direction.performed -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirection;
                 @Direction.canceled -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirection;
+                @DirectionMouse.started -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirectionMouse;
+                @DirectionMouse.performed -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirectionMouse;
+                @DirectionMouse.canceled -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirectionMouse;
             }
             m_Wrapper.m_MainControllsActionsCallbackInterface = instance;
             if (instance != null)
@@ -463,6 +499,9 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                 @Direction.started += instance.OnDirection;
                 @Direction.performed += instance.OnDirection;
                 @Direction.canceled += instance.OnDirection;
+                @DirectionMouse.started += instance.OnDirectionMouse;
+                @DirectionMouse.performed += instance.OnDirectionMouse;
+                @DirectionMouse.canceled += instance.OnDirectionMouse;
             }
         }
     }
@@ -482,5 +521,6 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnDirection(InputAction.CallbackContext context);
+        void OnDirectionMouse(InputAction.CallbackContext context);
     }
 }

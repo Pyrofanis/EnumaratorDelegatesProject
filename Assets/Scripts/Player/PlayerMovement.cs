@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStates playerStates;
 
     private bool isMoving;
+    [SerializeField]
     private bool canJump;
 
     private PlayerStates.Behaviour currentBehaviour;
@@ -82,8 +83,7 @@ public class PlayerMovement : MonoBehaviour
         if (isMoving)
         {
             rb.position = Vector2.MoveTowards(rb.position, transform.position + horizontalAXES.normalized, speed * Time.deltaTime);
-            //transform.position = Vector2.MoveTowards(transform.position, transform.position + horizontalAXES, speed * Time.deltaTime);
-            //Debug.Log("Horizontal Axe: " + horizontalAXES + ", Add" + (transform.position + horizontalAXES));
+            
         }
 
     }
@@ -121,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator JumpWithAnimationDelay()
     {
+        StopJumping();
         playerStates.ChangeBehaviour(PlayerStates.Behaviour.jumping);
         yield return new WaitForSeconds(0.2F);
         rb.AddForce(Vector2.up * _JumpSpeed);
