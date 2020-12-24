@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 232658665}
   m_Layer: 0
   m_Name: LeftCollider
-  m_TagString: Untagged
+  m_TagString: Boundaries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5451,7 +5451,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.12159328, b: 0.2735849, a: 0}
+  m_BackGroundColor: {r: 0.27450982, g: 0, b: 0.11764706, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5541,7 +5541,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4870bca5d873a41be7dcf3c18f0565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingColor: {r: 0, g: 0.44313726, b: 1, a: 0}
+  startingColorSky: {r: 0.2862745, g: 0, b: 0.427451, a: 0}
+  CloudParticleMat: {fileID: 2100000, guid: b73531b79281c4a4d9ed6b03b419c838, type: 2}
+  StartingColorClouds: {r: 0.105882354, g: 0.87058824, b: 0, a: 0}
+  finalColorClouds: {r: 0, g: 1, b: 0.5254902, a: 0}
   timeToCompletCycle: 350
 --- !u!1 &641550711
 GameObject:
@@ -5593,6 +5596,85 @@ Transform:
   - {fileID: 259773349}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &641575978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 641575981}
+  - component: {fileID: 641575980}
+  - component: {fileID: 641575979}
+  m_Layer: 0
+  m_Name: Enemie
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &641575979
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641575978}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &641575980
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641575978}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!4 &641575981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641575978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.2027066, y: -4.19, z: -5.2809467}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &792582818
 GameObject:
@@ -7126,7 +7208,7 @@ GameObject:
   - component: {fileID: 1503227299}
   m_Layer: 0
   m_Name: RightCollider
-  m_TagString: Untagged
+  m_TagString: Boundaries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7621,10 +7703,11 @@ GameObject:
   - component: {fileID: 2114850622}
   - component: {fileID: 2114850621}
   - component: {fileID: 2114850625}
+  - component: {fileID: 2114850626}
+  - component: {fileID: 2114850630}
   - component: {fileID: 2114850624}
   - component: {fileID: 2114850623}
   - component: {fileID: 2114850627}
-  - component: {fileID: 2114850626}
   - component: {fileID: 2114850628}
   - component: {fileID: 2114850629}
   m_Layer: 0
@@ -7770,8 +7853,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbb9a1a0613bac45bea2f0d3838db42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  _JumpSpeed: 300
   canJump: 0
 --- !u!114 &2114850625
 MonoBehaviour:
@@ -7841,3 +7922,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllersInUse: 0
+  inputOffset: 2
+--- !u!114 &2114850630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114850618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89647170db982fe4fb48a1fbf92efedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: 200
+  speed: 10
+  jumpSpeed: 100
+  damage: 40

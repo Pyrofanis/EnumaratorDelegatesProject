@@ -3,15 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
-{   [Tooltip("The SpeedOf The Player i x axes")]
-    [Header("Players Speed")]
-    [Range(1,10)]
-    public int speed;
-    [Tooltip("The Jump Height Of Player")]
-    [Header("Players Jump Height")]
-    [Range(100,1000)]
-    public int _JumpSpeed;
-
+{   
     private Vector3 horizontalAXES;
 
     private Rigidbody2D rb;
@@ -26,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStates.Surface currentSurface;
 
     private PlayerControlls inputActions;
+
+    private PlayerStats playerStats;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -37,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Enable();
         rb = GetComponent<Rigidbody2D>();
         playerStates = GetComponent<PlayerStates>();
+        playerStats = GetComponent<PlayerStats>();
         PlayerStates.onPlayerBehaviourChange += MovementStateManager;
         PlayerStates.onSurfaceChange += JumpManager;
     }
@@ -82,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalAXES.x = inputActions.MainControlls.Move.ReadValue<float>();
         if (isMoving)
         {
-            rb.position = Vector2.MoveTowards(rb.position, transform.position + horizontalAXES.normalized, speed * Time.deltaTime);
+            rb.position = Vector2.MoveTowards(rb.position, transform.position + horizontalAXES.normalized, playerStats.speed * Time.deltaTime);
             
         }
 
@@ -124,6 +119,6 @@ public class PlayerMovement : MonoBehaviour
         StopJumping();
         playerStates.ChangeBehaviour(PlayerStates.Behaviour.jumping);
         yield return new WaitForSeconds(0.2F);
-        rb.AddForce(Vector2.up * _JumpSpeed);
+        rb.AddForce(Vector2.up * playerStats.jumpSpeed);
     }
 }

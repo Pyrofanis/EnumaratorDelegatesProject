@@ -8,8 +8,10 @@ public class EnemiesMain : MonoBehaviour
         attack,
         avoid,
         gotHit,
-        hover,
-        chase
+        whiver,
+        chase,
+        death,
+        idle
 
     }
     public delegate void EnemieStateManager(EnemieStates enemieStates);

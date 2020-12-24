@@ -10,6 +10,12 @@ public class PlayerDirectionManager : MonoBehaviour
 
     public bool controllersInUse;
 
+    [Range(0.5f, 4)]
+    [SerializeField]
+    [Header("Mouse_Direction_Change_Offset")]
+    [Tooltip("it multiplies with the mouse distance from the player in order to minimize it or extend it")]
+    private float inputOffset;
+
     Vector3 currentMousePos;
     private void Awake()
     {
@@ -29,6 +35,7 @@ public class PlayerDirectionManager : MonoBehaviour
     {
         DirectionManager();
         CheckIfControllersAreBeingUsed();
+        Debug.Log(DirectionOfCharacter());
     }
     private void DirectionManager()
     {
@@ -45,7 +52,8 @@ public class PlayerDirectionManager : MonoBehaviour
     {
         Vector2 MousePixelPos = inputActions.MainControlls.DirectionMouse.ReadValue<Vector2>();
         float mouseWorldPosition = Camera.main.ScreenToWorldPoint(MousePixelPos).x;
-        float mousePosRelativeToPlayer = Mathf.Clamp(mouseWorldPosition - transform.position.x, -1, 1);
+        float mousePosRelativeToPlayer = (mouseWorldPosition - transform.position.x)*inputOffset;
+        float mousePosRelativeToPlayerClamped = Mathf.Clamp(mousePosRelativeToPlayer, -1, 1);
         if (controllersInUse)
         {
             return inputActions.MainControlls.Direction.ReadValue<float>();
@@ -53,7 +61,7 @@ public class PlayerDirectionManager : MonoBehaviour
 
         else 
         {
-            return mousePosRelativeToPlayer;
+            return mousePosRelativeToPlayerClamped;
 
         }
     }

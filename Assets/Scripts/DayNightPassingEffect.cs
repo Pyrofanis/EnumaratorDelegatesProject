@@ -5,20 +5,32 @@ using UnityEngine;
 public class DayNightPassingEffect : MonoBehaviour
 {   [Header("The color We Want our Background ToStart With")]
     [Tooltip("final colour by default is enviroment/backround colour so you only need to set accordingly")]
-    public Color StartingColor;
-    private Color finalColor;
+    public Color startingColorSky;
+    private Color finalColorSky;
 
     private Camera mainSceneCamera;
+    [Header("Material Of Cloud Particles")]
+    [Tooltip("Drop The mat")]
+    public Material CloudParticleMat;
+
+    [Header("cloud  Colours")]
+    [Tooltip("better set around the rgb values starting colour")]
+    public Color StartingColorClouds;
+    [Tooltip("better set around the rgb values its the final color")]
+    public Color finalColorClouds;
+
     [Header("Day Cycle")]
     [Tooltip("self explenatory")]
     public float timeToCompletCycle;
     private float timer;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         mainSceneCamera = GetComponent<Camera>();
-        finalColor = mainSceneCamera.backgroundColor;
+        finalColorSky = mainSceneCamera.backgroundColor;
     }
 
     // Update is called once per frame
@@ -27,14 +39,22 @@ public class DayNightPassingEffect : MonoBehaviour
         float dayTime;
         timer += Time.deltaTime;
         dayTime = Mathf.PingPong(timer / timeToCompletCycle,1 );
-        colorManager(dayTime);
+        colorManager(dayTime, startingColorSky, finalColorSky,Camera.main);
+        colorManager(dayTime, StartingColorClouds, finalColorClouds,null, CloudParticleMat);
  
     }
-    private void colorManager(float RateOfChange)
+    private void colorManager(float RateOfChange, Color startingColour,Color finalColour,Camera camera=null,Material cloudMat=null)
     {
-        Color backgroundColor = finalColor;
-        backgroundColor = Color.LerpUnclamped(StartingColor, finalColor, RateOfChange);
-        mainSceneCamera.backgroundColor = backgroundColor;
+        Color backgroundColor = finalColour;
+        backgroundColor = Color.LerpUnclamped(startingColour, finalColour, RateOfChange);
+        if (camera != null)
+        {
+            camera.backgroundColor = backgroundColor;
+        }
+        if (cloudMat != null)
+        {
+            cloudMat.SetColor("_Color", backgroundColor);
+        }
     }
    
 }
