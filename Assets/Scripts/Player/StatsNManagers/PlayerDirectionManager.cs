@@ -8,7 +8,9 @@ public class PlayerDirectionManager : MonoBehaviour
 
     private PlayerStates player;
 
-    public bool controllersInUse;
+    private PlayerStats playerStats;
+
+    private bool controllersInUse;
 
     [Range(0.5f, 4)]
     [SerializeField]
@@ -20,6 +22,7 @@ public class PlayerDirectionManager : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<PlayerStates>();
+        playerStats = GetComponent<PlayerStats>();
     }
     // Start is called before the first frame update
     void Start()
@@ -42,10 +45,12 @@ public class PlayerDirectionManager : MonoBehaviour
         if (Mathf.Approximately(DirectionOfCharacter(), 1))
         {
             player.ChangeDirection(PlayerStates.PlayerDirection.right);
+            playerStats.boltDirection = transform.right;
         }
         if (Mathf.Approximately(DirectionOfCharacter(), -1))
         {
             player.ChangeDirection(PlayerStates.PlayerDirection.left);
+            playerStats.boltDirection = -transform.right;
         }
     }
     private float DirectionOfCharacter()

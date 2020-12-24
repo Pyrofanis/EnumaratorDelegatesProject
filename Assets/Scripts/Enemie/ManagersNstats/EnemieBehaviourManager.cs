@@ -32,10 +32,7 @@ public class EnemieBehaviourManager : MonoBehaviour
         enemiesMain = GetComponent<EnemiesMain>();
         maxhHealth = enemieStats.health;
     }
-    private void OnEnable()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -80,7 +77,7 @@ public class EnemieBehaviourManager : MonoBehaviour
 
     private void Whiver()
     {
-        if (alone && enemieStats.health != maxhHealth)
+        if (alone && enemieStats.health <= maxhHealth/4)
         {
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.whiver);
         }

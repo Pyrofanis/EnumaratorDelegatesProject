@@ -28,18 +28,11 @@ public class EnemieStats : MonoBehaviour
     [Header("Players stats Object")]
     [Tooltip("ignore not hidden only for debug")]
     public PlayerStats playerStats;
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         playerStats = GameObject.FindObjectOfType<PlayerStats>();
         enemiesRigidBody = GetComponent<Rigidbody2D>();
-        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

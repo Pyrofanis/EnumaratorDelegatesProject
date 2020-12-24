@@ -10,7 +10,9 @@ public class EnemieAnimationManager : MonoBehaviour
     void Start()
     {
         enemieAnimator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         EnemiesMain.onEnemieStateChanger += ApplyAnimations;
+        EnemiesMain.onEnemieDirectionChange += ApplyDirectionIndication;
     }
     private void ApplyAnimations(EnemiesMain.EnemieStates states)
     {
@@ -49,6 +51,18 @@ public class EnemieAnimationManager : MonoBehaviour
                 break;
 
 
+        }
+    }
+    private void ApplyDirectionIndication(EnemiesMain.EnemieDirection direction)
+    {
+        switch (direction)
+        {
+            case EnemiesMain.EnemieDirection.right:
+                spriteRenderer.flipX = false;
+                break;
+            case EnemiesMain.EnemieDirection.left:
+                spriteRenderer.flipX = true;
+                break;
         }
     }
 

@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStates playerStates;
 
     private bool isMoving;
-    [SerializeField]
     private bool canJump;
 
     private PlayerStates.Behaviour currentBehaviour;

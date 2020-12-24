@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {   
     private PlayerStates playerStates;
-    private Animator playerAnimator;
+    private static Animator playerAnimator;
     private SpriteRenderer spriteRenderer;
 
     public enum AnimationState
@@ -72,11 +72,17 @@ public class PlayerAnimations : MonoBehaviour
             AnimationStateChange(AnimationState.stoped);
         }
     }
-    private bool CheckIfCurrentAnimationIsPlaying()
+    private static bool CheckIfCurrentAnimationIsPlaying()
     {
         return playerAnimator.GetCurrentAnimatorClipInfo(0).Length >
             playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime
             && !playerAnimator.IsInTransition(0);
+    }
+    public static bool CheckIfAttackAnimationIsPlaying()
+    {   string clipsName;
+       AnimatorClipInfo[] clipInfo= playerAnimator.GetCurrentAnimatorClipInfo(0);
+        clipsName = clipInfo[0].clip.name;
+        return CheckIfCurrentAnimationIsPlaying() && clipsName.Contains("Attack"); 
     }
     private void DirectionManager(PlayerStates.PlayerDirection direction)
     {

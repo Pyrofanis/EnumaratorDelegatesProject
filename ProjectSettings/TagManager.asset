@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Boundaries
+  - Enemie
+  - PlayersFists
   layers:
   - Default
   - TransparentFX

@@ -14,14 +14,18 @@ public class EnemiesMain : MonoBehaviour
         idle
 
     }
+    public enum EnemieDirection
+    {
+        left,
+        right
+    }
+
     public delegate void EnemieStateManager(EnemieStates enemieStates);
     public static event EnemieStateManager onEnemieStateChanger;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public delegate void EnemieDirectionManager(EnemieDirection direction);
+    public static event EnemieDirectionManager onEnemieDirectionChange;
+
     public void ChangeEnemieState(EnemieStates enemieState)
     {
         if (onEnemieStateChanger != null)
@@ -30,9 +34,12 @@ public class EnemiesMain : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeDirection(EnemieDirection direction)
     {
-        
+        if (onEnemieDirectionChange != null)
+        {
+            onEnemieDirectionChange(direction);
+        }
     }
+
 }

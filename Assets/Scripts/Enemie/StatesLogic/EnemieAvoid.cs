@@ -14,6 +14,7 @@ public class EnemieAvoid : MonoBehaviour
     {
            enemieStats= GetComponent<EnemieStats>();
         EnemiesMain.onEnemieStateChanger += CheckIfShouldAvoid;
+        EnemiesMain.onEnemieDirectionChange += CheckWhereToMove;
     }
     private void CheckIfShouldAvoid(EnemiesMain.EnemieStates state)
     {
@@ -26,29 +27,23 @@ public class EnemieAvoid : MonoBehaviour
             Avoiding = false;
         }
     }
+    private void CheckWhereToMove(EnemiesMain.EnemieDirection direction)
+    {
+        if (direction.Equals(EnemiesMain.EnemieDirection.right))
+        {
+            whereToMove = transform.right;
+        }
+        else
+        {
+            whereToMove = -transform.right;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         Avoid(Avoiding);
-        CalculateWhereToMove(Avoiding);
     }
-    private void CalculateWhereToMove(bool shouldIkeepGoing)
-    {   if (shouldIkeepGoing)
-        {
-            float playersHorizontalPosition = enemieStats.playerStats.transform.position.x;
-            float distanceBettweenPlayerAndEnemie = transform.position.x - playersHorizontalPosition;
-            if (distanceBettweenPlayerAndEnemie > 0)
-            {
-                whereToMove = transform.right;
-            }
-            else if (distanceBettweenPlayerAndEnemie != 0)
-            {
-                whereToMove = -transform.right;
-            }
-        }
-      
-        
-    }
+   
     private void Avoid(bool shouldIkeepGoing)
     {
        if (shouldIkeepGoing)
