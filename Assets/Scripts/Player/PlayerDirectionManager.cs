@@ -35,7 +35,7 @@ public class PlayerDirectionManager : MonoBehaviour
     {
         DirectionManager();
         CheckIfControllersAreBeingUsed();
-        Debug.Log(DirectionOfCharacter());
+
     }
     private void DirectionManager()
     {

@@ -17,7 +17,6 @@ public class EnemiesMain : MonoBehaviour
     public delegate void EnemieStateManager(EnemieStates enemieStates);
     public static event EnemieStateManager onEnemieStateChanger;
 
-    public PlayerStates player;
     // Start is called before the first frame update
     void Start()
     {

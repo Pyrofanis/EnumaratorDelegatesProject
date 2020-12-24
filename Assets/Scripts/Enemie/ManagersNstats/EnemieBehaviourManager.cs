@@ -18,13 +18,12 @@ public class EnemieBehaviourManager : MonoBehaviour
 
 
     [Header("Enemies Safe Distance")]
-    public float enemieRadious;
+    public float enemieRadius;
 
     private bool iAmAlive = true;
     private bool playerInbound;
     private bool alone;
 
-    private float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +40,6 @@ public class EnemieBehaviourManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
         Chase();
         Death();
         CheckIfPlayerOrEnemieNear();
@@ -93,8 +91,8 @@ public class EnemieBehaviourManager : MonoBehaviour
     }
     private void CheckIfPlayerOrEnemieNear()
     {
-        Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, enemieRadious, _PlayersLayer);
-        Collider2D[] allies= Physics2D.OverlapCircleAll(transform.position, enemieRadious, _EnemiesLayer);
+        Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, enemieRadius, _PlayersLayer);
+        Collider2D[] allies= Physics2D.OverlapCircleAll(transform.position, enemieRadius, _EnemiesLayer);
         foreach (Collider2D coli in playerColliders)
         {
             if (coli.CompareTag("Player"))
@@ -115,26 +113,10 @@ public class EnemieBehaviourManager : MonoBehaviour
             alone = false;
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnDrawGizmos()
     {
-        if (other.CompareTag("Player"))
-        {
-            enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.attack);
-        }
+        Gizmos.DrawWireSphere(transform.position, enemieRadius);
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && timer >= enemieStats.attackRate)
-        {
-            enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.attack);
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Boundaries"))
-        {
-            enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.idle);
-        }
-    }
- 
+
+
 }
