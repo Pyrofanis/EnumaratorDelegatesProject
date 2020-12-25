@@ -11,18 +11,24 @@ public class EnemieDeath : MonoBehaviour
     private EnemieCollisionsBehaviourManager enemieCollisionsBehaviour;
     private Collider2D enemiesCollider;
     private EnemieAnimationManager enemieAnimation;
+    private Rigidbody2D enemieRb;
 
+
+    private EnemiesMain enemiesMain;
     private void Awake()
     {
         enemieAnimation = GetComponent<EnemieAnimationManager>();
         enemiesCollider = GetComponent<Collider2D>();
         enemieBehaviour = GetComponent<EnemieBehaviourManager>();
         enemieCollisionsBehaviour = GetComponent<EnemieCollisionsBehaviourManager>();
+        enemieRb = GetComponent<Rigidbody2D>();
+        enemiesMain = GetComponent<EnemiesMain>();
+
     }
     // Start is called before the first frame update
     void Start()
     {  
-        EnemiesMain.onEnemieStateChanger += Die;
+        enemiesMain.onEnemieStateChanger += Die;
     }
 
   private void Die(EnemiesMain.EnemieStates states)
@@ -34,6 +40,7 @@ public class EnemieDeath : MonoBehaviour
     }
     private IEnumerator Death()
     {
+        enemieRb.constraints = RigidbodyConstraints2D.FreezeAll;
         enemiesCollider.enabled = false;
         enemieBehaviour.enabled = false;
         enemieCollisionsBehaviour.enabled = false;

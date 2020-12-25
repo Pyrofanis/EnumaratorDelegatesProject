@@ -20,9 +20,11 @@ public class EnemieBehaviourManager : MonoBehaviour
     [Header("Enemies Safe Distance")]
     public float enemieRadius;
 
-    private bool iAmAlive = true;
+    [SerializeField]
     private bool playerInbound;
     private bool alone;
+
+    private Vector2 currentDistanceFromPlayer;
 
 
     // Start is called before the first frame update
@@ -62,17 +64,17 @@ public class EnemieBehaviourManager : MonoBehaviour
     {
         if (enemieStats.health <= 0)
         {
-            iAmAlive = false;
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.death);
 
         }
     }
     private void Avoid()
     {
-        if (enemieStats.health <= maxhHealth / 2 && playerInbound && iAmAlive)
+        if (enemieStats.health <= maxhHealth / 2 && playerInbound)
         {
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.avoid);
         }
+
     }
 
     private void Whiver()
@@ -81,25 +83,18 @@ public class EnemieBehaviourManager : MonoBehaviour
         {
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.whiver);
         }
-        else if (alone)
-        {
-            enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.chase);
-        }
     }
     private void CheckIfPlayerOrEnemieNear()
     {
         Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, enemieRadius, _PlayersLayer);
         Collider2D[] allies= Physics2D.OverlapCircleAll(transform.position, enemieRadius, _EnemiesLayer);
-        foreach (Collider2D coli in playerColliders)
+        if (playerColliders.Length>0)
         {
-            if (coli.CompareTag("Player"))
-            {
-                playerInbound = true;
-            }
-            else
-            {
-                playerInbound = false;
-            }
+            playerInbound = true;
+        }
+        else
+        {
+            playerInbound = false;
         }
         if (allies.Length.Equals(1))
         {
@@ -109,6 +104,10 @@ public class EnemieBehaviourManager : MonoBehaviour
         {
             alone = false;
         }
+    }
+    private float DistanceFromPlayer()
+    {
+        return Vector2.Distance(transform.position, enemieStats.playerStats.transform.position);
     }
     private void OnDrawGizmos()
     {

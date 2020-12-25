@@ -8,6 +8,8 @@ public class EnemieCollisionsBehaviourManager : MonoBehaviour
 
     private EnemieStats enemieStats;
 
+    private EnemiesMain.EnemieStates currentBehabiour;
+
     private float timer;
     private Collider2D enemiesCollider;
     private Collider2D playersColliderToIgnore;
@@ -54,6 +56,7 @@ public class EnemieCollisionsBehaviourManager : MonoBehaviour
             timer = 0;
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.attack);
         }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -62,10 +65,7 @@ public class EnemieCollisionsBehaviourManager : MonoBehaviour
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.idle);
 
         }
-        if(collision.gameObject.CompareTag("Enemie"))
-        {
-        Physics2D.IgnoreCollision(enemiesCollider, collision.gameObject.GetComponent<Collider2D>());
-        }
+
 
 
     }

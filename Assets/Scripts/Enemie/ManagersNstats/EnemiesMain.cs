@@ -21,10 +21,10 @@ public class EnemiesMain : MonoBehaviour
     }
 
     public delegate void EnemieStateManager(EnemieStates enemieStates);
-    public static event EnemieStateManager onEnemieStateChanger;
+    public  event EnemieStateManager onEnemieStateChanger;
 
     public delegate void EnemieDirectionManager(EnemieDirection direction);
-    public static event EnemieDirectionManager onEnemieDirectionChange;
+    public  event EnemieDirectionManager onEnemieDirectionChange;
 
     public void ChangeEnemieState(EnemieStates enemieState)
     {

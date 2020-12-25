@@ -217,7 +217,7 @@ MonoBehaviour:
   attackRange: 0.5
   attackResponsiveness: 10
   attackRate: 0.6
-  damage: 40
+  damage: 15
 --- !u!114 &52967152686405750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbb9a1a0613bac45bea2f0d3838db42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canJump: 0
 --- !u!114 &52967152686405641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,5 +278,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d0f91673fdd9c4eaf466f29d999863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllersInUse: 0
   inputOffset: 2

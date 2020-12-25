@@ -5,10 +5,17 @@ using UnityEngine;
 public class EnemieGotHit : MonoBehaviour
 {
     private EnemieStats enemieStats;
+    private EnemiesMain enemiesMain;
+    private void Awake()
+    {
+        enemiesMain = GetComponent<EnemiesMain>();
+
+    }
     // Start is called before the first frame update
     void Start()
     {
-        EnemiesMain.onEnemieStateChanger += CheckIfGotHitAndApply;
+        enemieStats = GetComponent<EnemieStats>();
+        enemiesMain.onEnemieStateChanger += CheckIfGotHitAndApply;
     }
     private void CheckIfGotHitAndApply(EnemiesMain.EnemieStates enemieState)
     {

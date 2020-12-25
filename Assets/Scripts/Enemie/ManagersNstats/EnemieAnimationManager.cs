@@ -6,13 +6,16 @@ public class EnemieAnimationManager : MonoBehaviour
 {
     private Animator enemieAnimator;
     private SpriteRenderer spriteRenderer;
+
+    private EnemiesMain enemiesMain;
     // Start is called before the first frame update
     void Start()
     {
         enemieAnimator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        EnemiesMain.onEnemieStateChanger += ApplyAnimations;
-        EnemiesMain.onEnemieDirectionChange += ApplyDirectionIndication;
+        enemiesMain = GetComponent<EnemiesMain>();
+        enemiesMain.onEnemieStateChanger += ApplyAnimations;
+        enemiesMain.onEnemieDirectionChange += ApplyDirectionIndication;
     }
     private void ApplyAnimations(EnemiesMain.EnemieStates states)
     {

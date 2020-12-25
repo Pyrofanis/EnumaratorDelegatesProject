@@ -10,11 +10,17 @@ public class EnemieChase : MonoBehaviour
     private EnemieStats enemieStats;
 
     private bool startChasing;
+    private EnemiesMain enemiesMain;
+    private void Awake()
+    {
+        enemiesMain = GetComponent<EnemiesMain>();
+
+    }
     // Start is called before the first frame update
     void Start()
     {
         enemieStats = GetComponent<EnemieStats>();
-        EnemiesMain.onEnemieStateChanger += CheckIfIShouldChase;
+        enemiesMain.onEnemieStateChanger += CheckIfIShouldChase;
     }
     private void CheckIfIShouldChase(EnemiesMain.EnemieStates enemie)
     {

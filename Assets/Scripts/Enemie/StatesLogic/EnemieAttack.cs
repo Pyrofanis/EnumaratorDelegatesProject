@@ -6,11 +6,18 @@ public class EnemieAttack : MonoBehaviour
 {
     private EnemieStats enemieStats;
 
+    private EnemiesMain enemiesMain;
+
+    private void Awake()
+    {
+        enemiesMain = GetComponent<EnemiesMain>();
+
+    }
     // Start is called before the first frame update
     void Start()
     {
         enemieStats = GetComponent<EnemieStats>();
-        EnemiesMain.onEnemieStateChanger += CheckAndApllyAttack;
+        enemiesMain.onEnemieStateChanger += CheckAndApllyAttack;
     }
     private void CheckAndApllyAttack(EnemiesMain.EnemieStates state)
     {

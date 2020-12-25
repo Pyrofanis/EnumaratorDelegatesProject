@@ -179,6 +179,7 @@ MonoBehaviour:
   dmg: 30
   attackRate: 1.5
   rateOfRejuvanation: 0.3
+  SafeDistance: 4
   enemiesRigidBody: {fileID: 0}
   playerStats: {fileID: 0}
 --- !u!114 &8279664395219195001

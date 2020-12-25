@@ -41,4 +41,11 @@ public class BoltScript : MonoBehaviour
     {
         Gizmos.DrawLine(initialPos, transform.position);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemie"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -9,21 +9,29 @@ public class EnemieAvoid : MonoBehaviour
     private Vector3 whereToMove;
 
     private EnemieStats enemieStats;
+    private EnemiesMain enemiesMain;
+    private void Awake()
+    {
+        enemiesMain = GetComponent<EnemiesMain>();
+
+    }
     // Start is called before the first frame update
     void Start()
     {
-           enemieStats= GetComponent<EnemieStats>();
-        EnemiesMain.onEnemieStateChanger += CheckIfShouldAvoid;
-        EnemiesMain.onEnemieDirectionChange += CheckWhereToMove;
+        enemieStats= GetComponent<EnemieStats>();
+        enemiesMain.onEnemieStateChanger += CheckIfShouldAvoid;
+        enemiesMain.onEnemieDirectionChange += CheckWhereToMove;
     }
     private void CheckIfShouldAvoid(EnemiesMain.EnemieStates state)
     {
         if (state.Equals(EnemiesMain.EnemieStates.avoid))
         {
             Avoiding = true;
+            Physics2D.IgnoreLayerCollision(8, 8);
         }
         else
         {
+            Physics2D.IgnoreLayerCollision(8, 8,false);
             Avoiding = false;
         }
     }
@@ -47,10 +55,12 @@ public class EnemieAvoid : MonoBehaviour
     private void Avoid(bool shouldIkeepGoing)
     {
        if (shouldIkeepGoing)
-        {   float speed = enemieStats.speed * Time.deltaTime;
+        {
+            float speed = enemieStats.speed * Time.deltaTime;
             Vector2 targetPosition = transform.position + whereToMove;
             enemieStats.enemiesRigidBody.position = Vector2.MoveTowards(transform.position, targetPosition, speed);
         }
+
        
     }
 }

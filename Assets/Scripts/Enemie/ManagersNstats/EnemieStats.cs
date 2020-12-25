@@ -21,6 +21,10 @@ public class EnemieStats : MonoBehaviour
     [Range(0.15f, 0.5f)]
     public float rateOfRejuvanation;
 
+    [Header("The Distance To Escape considered Safe")]
+    [Tooltip("Used By Avoid State")]
+    [Range(4,10)]
+    public float SafeDistance;
 
     [HideInInspector]
     public Rigidbody2D enemiesRigidBody;
