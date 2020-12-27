@@ -20,18 +20,17 @@ public class EnemieBehaviourManager : MonoBehaviour
     [Header("Enemies Safe Distance")]
     public float enemieRadius;
 
-    [SerializeField]
     private bool playerInbound;
     private bool alone;
 
-    private Vector2 currentDistanceFromPlayer;
-
+    private bool avoidingGroup;
 
     // Start is called before the first frame update
     void Start()
     {
         enemieStats = GetComponent<EnemieStats>();
         enemiesMain = GetComponent<EnemiesMain>();
+        EnemiesMain.onInteract += CheckIntetactionsWithPlayer;
         maxhHealth = enemieStats.health;
     }
 
@@ -51,10 +50,20 @@ public class EnemieBehaviourManager : MonoBehaviour
 
     }
 
-
+    private void CheckIntetactionsWithPlayer(EnemiesMain.InteractionsWithPlayer interactions)
+    {
+        if (interactions.Equals(EnemiesMain.InteractionsWithPlayer.avoid))
+        {
+            avoidingGroup = true;
+        }
+        else
+        {
+            avoidingGroup = false;
+        }
+    }
     private void Chase()
     {
-        if (enemieStats.health > maxhHealth / 2)
+        if (enemieStats.health > maxhHealth / 2&&!avoidingGroup)
         {
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.chase);
         }
@@ -70,10 +79,11 @@ public class EnemieBehaviourManager : MonoBehaviour
     }
     private void Avoid()
     {
-        if (enemieStats.health <= maxhHealth / 2 && playerInbound)
+        if ((enemieStats.health <= maxhHealth / 2 || avoidingGroup) && playerInbound)
         {
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.avoid);
         }
+
 
     }
 

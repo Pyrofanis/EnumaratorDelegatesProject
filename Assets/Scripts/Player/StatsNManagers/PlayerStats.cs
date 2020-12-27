@@ -43,4 +43,9 @@ public class PlayerStats : MonoBehaviour
     [Header("playersDamage")]
     [Range(10, 80)]
     public float damage;
+
+    [Header("Players Rejuvanation Speed Per Second")]
+    [Tooltip("multiplied by delta time")]
+    [Range(1,20)]
+    public float rejuvanationHpAdd;
 }

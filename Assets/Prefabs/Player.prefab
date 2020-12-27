@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 52967152686405745}
   - component: {fileID: 52967152686405748}
   - component: {fileID: 52967152686405751}
+  - component: {fileID: 4401181588256899097}
   - component: {fileID: 52967152686405744}
   - component: {fileID: 52967152686405750}
   - component: {fileID: 52967152686405641}
@@ -197,6 +198,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bff1f91137ee9d45bcb597990333176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4401181588256899097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52967152686405644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e698dafa6158da24494a3007fe272f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &52967152686405744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +231,7 @@ MonoBehaviour:
   attackResponsiveness: 10
   attackRate: 0.6
   damage: 15
+  rejuvanationHpAdd: 0
 --- !u!114 &52967152686405750
 MonoBehaviour:
   m_ObjectHideFlags: 0

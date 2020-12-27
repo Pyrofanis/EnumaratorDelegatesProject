@@ -19,12 +19,20 @@ public class EnemiesMain : MonoBehaviour
         left,
         right
     }
+    public enum InteractionsWithPlayer
+    {
+        avoid,
+        none
+    }
 
     public delegate void EnemieStateManager(EnemieStates enemieStates);
     public  event EnemieStateManager onEnemieStateChanger;
 
     public delegate void EnemieDirectionManager(EnemieDirection direction);
     public  event EnemieDirectionManager onEnemieDirectionChange;
+
+    public delegate void EnemieInteractionWithPlayer(EnemiesMain.InteractionsWithPlayer interactions);
+    public static event EnemieInteractionWithPlayer onInteract;
 
     public void ChangeEnemieState(EnemieStates enemieState)
     {
@@ -39,6 +47,13 @@ public class EnemiesMain : MonoBehaviour
         if (onEnemieDirectionChange != null)
         {
             onEnemieDirectionChange(direction);
+        }
+    }
+    public static void ChangeInteraction(InteractionsWithPlayer interactions)
+    {
+        if (onInteract != null)
+        {
+            onInteract(interactions);
         }
     }
 

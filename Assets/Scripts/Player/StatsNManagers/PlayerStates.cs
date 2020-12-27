@@ -10,7 +10,8 @@ public class PlayerStates : MonoBehaviour
         walking,
         jumping,
         gotHit,
-        attacking
+        attacking,
+        Whiver_Die
     }
     public enum PlayerDirection
     {

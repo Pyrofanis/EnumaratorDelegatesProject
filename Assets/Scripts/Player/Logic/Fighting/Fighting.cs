@@ -7,6 +7,7 @@ public class Fighting : MonoBehaviour
     private PlayerStates playerStates;
     private PlayerStats playerStats;
     private PlayerControlls inputs;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -18,14 +19,18 @@ public class Fighting : MonoBehaviour
 
     void Start()
     {
-        inputs.MainControlls.Attack.performed +=_=> Attack(PlayerAnimations.CheckIfAttackAnimationIsPlaying());
         playerStates = GetComponent<PlayerStates>();
         playerStats = GetComponent<PlayerStats>();
+        inputs.MainControlls.Attack.performed += _ => Attack(PlayerAnimations.CheckIfAttackAnimationIsPlaying());
     }
-    private void Update()
+    private void OnEnable()
     {
+        inputs.Enable();
     }
-
+    private void OnDisable()
+    {
+        inputs.Disable();
+    }
     private void Attack(bool notPlayingAnimation)
     {
         if (!notPlayingAnimation)

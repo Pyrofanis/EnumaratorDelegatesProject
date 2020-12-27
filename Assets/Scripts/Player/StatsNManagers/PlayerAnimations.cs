@@ -38,11 +38,18 @@ public class PlayerAnimations : MonoBehaviour
                 //PlayWalkingAnime
                 playerAnimator.SetBool("Walk", true);
                 playerAnimator.SetBool("Idle", false);
+                playerAnimator.SetBool("Whiver", false);
                 break;
             case PlayerStates.Behaviour.idle:
-                playerAnimator.SetBool("Walk", false);
                 playerAnimator.SetBool("Idle", true);
+                playerAnimator.SetBool("Walk", false);
+                playerAnimator.SetBool("Whiver", false);
                 //play idleAnime
+                break;
+            case PlayerStates.Behaviour.Whiver_Die:
+                playerAnimator.SetBool("Whiver", true);
+                playerAnimator.SetBool("Walk", false);
+                playerAnimator.SetBool("Idle", false);
                 break;
             case PlayerStates.Behaviour.jumping:
                 //play Jumping Anime
@@ -51,6 +58,7 @@ public class PlayerAnimations : MonoBehaviour
             case PlayerStates.Behaviour.attacking:
                 playerAnimator.SetTrigger("Attack");
                 break;
+
                 
         }
     }
