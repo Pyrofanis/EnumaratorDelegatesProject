@@ -32,7 +32,7 @@ public class PlayerStates : MonoBehaviour
     public delegate void SurfaceInteractionManager(Surface surface);
     public static event SurfaceInteractionManager onSurfaceChange;
 
- public void ChangeBehaviour(Behaviour behaviour)
+ public static void ChangeBehaviour(Behaviour behaviour)
     {
         if (onPlayerBehaviourChange != null)
         {
@@ -46,7 +46,7 @@ public class PlayerStates : MonoBehaviour
             onDirectionChange(direction);
         }
     }
-    public void ChangeSurface(Surface surface)
+    public static void ChangeSurface(Surface surface)
     {
         if (onSurfaceChange != null)
         {

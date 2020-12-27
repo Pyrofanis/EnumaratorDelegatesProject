@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Fighting : MonoBehaviour
 {
-    private PlayerStates playerStates;
     private PlayerStats playerStats;
     private PlayerControlls inputs;
 
@@ -15,11 +14,8 @@ public class Fighting : MonoBehaviour
         inputs.Enable();
 
     }
-
-
     void Start()
     {
-        playerStates = GetComponent<PlayerStates>();
         playerStats = GetComponent<PlayerStats>();
         inputs.MainControlls.Attack.performed += _ => Attack(PlayerAnimations.CheckIfAttackAnimationIsPlaying());
     }
@@ -35,7 +31,7 @@ public class Fighting : MonoBehaviour
     {
         if (!notPlayingAnimation)
         {
-            playerStates.ChangeBehaviour(PlayerStates.Behaviour.attacking);
+            PlayerStates.ChangeBehaviour(PlayerStates.Behaviour.attacking);
             InstanciateFist();
         }
            

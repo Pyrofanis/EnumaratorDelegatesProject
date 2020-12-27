@@ -4,21 +4,12 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-
-    private PlayerStates _playerStates;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _playerStates = GetComponent<PlayerStates>();
-    }
-
-  
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            _playerStates.ChangeBehaviour(PlayerStates.Behaviour.jumping);
-            _playerStates.ChangeSurface(PlayerStates.Surface.ground);
+            PlayerStates.ChangeBehaviour(PlayerStates.Behaviour.jumping);
+            PlayerStates.ChangeSurface(PlayerStates.Surface.ground);
         }
 
     }
@@ -26,7 +17,7 @@ public class CollisionManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            _playerStates.ChangeSurface(PlayerStates.Surface.air);
+            PlayerStates.ChangeSurface(PlayerStates.Surface.air);
         }
     }
 }

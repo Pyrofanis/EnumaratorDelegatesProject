@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
 {   
-    private PlayerStates playerStates;
     private static Animator playerAnimator;
     private SpriteRenderer spriteRenderer;
+
+    private Color initialColour;
 
     public enum AnimationState
     {
@@ -15,14 +16,18 @@ public class PlayerAnimations : MonoBehaviour
     }
     public delegate void AnimationStateManager(PlayerAnimations.AnimationState animationState);
     public static event AnimationStateManager onStateChange;
+    private void Awake()
+    {
+        playerAnimator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+    }
     // Start is called before the first frame update
     void Start()
     {
-        playerStates = GetComponent<PlayerStates>();
-        playerAnimator = GetComponent<Animator>();
         PlayerStates.onPlayerBehaviourChange+= AnimationManager;
         PlayerStates.onDirectionChange += DirectionManager;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        initialColour = spriteRenderer.color;
     }
 
     // Update is called once per frame
@@ -58,9 +63,19 @@ public class PlayerAnimations : MonoBehaviour
             case PlayerStates.Behaviour.attacking:
                 playerAnimator.SetTrigger("Attack");
                 break;
+            case PlayerStates.Behaviour.gotHit:
+                playerAnimator.SetTrigger("Hit");
+                StartCoroutine(ChangeColourEffect(Color.red, initialColour, 1f));
+                break;
 
                 
         }
+    }
+    private IEnumerator ChangeColourEffect(Color colorToChangeTo,Color colorToReturnTo,float timeToChange)
+    {
+        spriteRenderer.color = colorToChangeTo;
+        yield return new WaitForSeconds(timeToChange);
+        spriteRenderer.color = colorToReturnTo;
     }
     private void AnimationStateChange(PlayerAnimations.AnimationState animationState)
     {

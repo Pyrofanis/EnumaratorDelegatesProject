@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerWhiverDeath : MonoBehaviour
 {   
     private PlayerStats playerStats;
-    private PlayerStates playerStates;
     private Fighting fightingPlayer;
 
 
@@ -17,7 +16,6 @@ public class PlayerWhiverDeath : MonoBehaviour
     private void Awake()
     {
         playerStats = GetComponent<PlayerStats>();
-        playerStates = GetComponent<PlayerStates>();
         fightingPlayer = GetComponent<Fighting>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -51,7 +49,7 @@ public class PlayerWhiverDeath : MonoBehaviour
     {
         if (whenToWhiver)
         {
-            playerStates.ChangeBehaviour(PlayerStates.Behaviour.Whiver_Die);
+            PlayerStates.ChangeBehaviour(PlayerStates.Behaviour.Whiver_Die);
         }
     }
 

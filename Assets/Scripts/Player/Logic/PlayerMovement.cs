@@ -7,12 +7,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 horizontalAXES;
 
     private Rigidbody2D rb;
-    private PlayerStates playerStates;
 
     private bool isMoving;
     private bool canJump;
 
-    private PlayerStates.Behaviour currentBehaviour;
 
     private PlayerStates.Surface currentSurface;
 
@@ -29,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
         inputActions.MainControlls.JumpAction.performed += _ => JumpState(canJump);
         inputActions.Enable();
         rb = GetComponent<Rigidbody2D>();
-        playerStates = GetComponent<PlayerStates>();
         playerStats = GetComponent<PlayerStats>();
         PlayerStates.onPlayerBehaviourChange += MovementStateManager;
         PlayerStates.onSurfaceChange += JumpManager;
@@ -45,8 +42,7 @@ public class PlayerMovement : MonoBehaviour
     }
      void MovementStateManager(PlayerStates.Behaviour behaviour)
     {
-        currentBehaviour = behaviour;
-       if (currentBehaviour== PlayerStates.Behaviour.walking)
+       if (behaviour == PlayerStates.Behaviour.walking)
         {
             StartMoving();
         }
@@ -85,11 +81,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (horizontalAXES.x != 0)
         {
-            playerStates.ChangeBehaviour(PlayerStates.Behaviour.walking);
+            PlayerStates.ChangeBehaviour(PlayerStates.Behaviour.walking);
         }
         else
         {
-            playerStates.ChangeBehaviour(PlayerStates.Behaviour.idle);
+            PlayerStates.ChangeBehaviour(PlayerStates.Behaviour.idle);
         }
     }
    
@@ -116,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator JumpWithAnimationDelay()
     {
         StopJumping();
-        playerStates.ChangeBehaviour(PlayerStates.Behaviour.jumping);
+        PlayerStates.ChangeBehaviour(PlayerStates.Behaviour.jumping);
         yield return new WaitForSeconds(0.2F);
         rb.AddForce(Vector2.up * playerStats.jumpSpeed);
     }

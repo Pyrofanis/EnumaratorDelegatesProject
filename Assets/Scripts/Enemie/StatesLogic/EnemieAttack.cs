@@ -32,5 +32,6 @@ public class EnemieAttack : MonoBehaviour
     {
             
         enemieStats.playerStats.playerHealth -= enemieStats.dmg;
+        PlayerStates.ChangeBehaviour(PlayerStates.Behaviour.gotHit);
     }
 }
