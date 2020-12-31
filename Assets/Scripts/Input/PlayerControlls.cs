@@ -57,6 +57,14 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""UiButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""ddc98936-2e69-43e0-afa0-b106adc04783"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -356,6 +364,28 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                     ""action"": ""DirectionMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ac6cec6-a6fb-4dd3-b89e-234649939582"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""SchemeGeneral"",
+                    ""action"": ""UiButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1eb92f85-5d35-4933-a250-a0474dd02314"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""SchemeGeneral"",
+                    ""action"": ""UiButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -396,6 +426,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         m_MainControlls_Move = m_MainControlls.FindAction("Move", throwIfNotFound: true);
         m_MainControlls_Direction = m_MainControlls.FindAction("Direction", throwIfNotFound: true);
         m_MainControlls_DirectionMouse = m_MainControlls.FindAction("DirectionMouse", throwIfNotFound: true);
+        m_MainControlls_UiButton = m_MainControlls.FindAction("UiButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -450,6 +481,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
     private readonly InputAction m_MainControlls_Move;
     private readonly InputAction m_MainControlls_Direction;
     private readonly InputAction m_MainControlls_DirectionMouse;
+    private readonly InputAction m_MainControlls_UiButton;
     public struct MainControllsActions
     {
         private @PlayerControlls m_Wrapper;
@@ -459,6 +491,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_MainControlls_Move;
         public InputAction @Direction => m_Wrapper.m_MainControlls_Direction;
         public InputAction @DirectionMouse => m_Wrapper.m_MainControlls_DirectionMouse;
+        public InputAction @UiButton => m_Wrapper.m_MainControlls_UiButton;
         public InputActionMap Get() { return m_Wrapper.m_MainControlls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -483,6 +516,9 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                 @DirectionMouse.started -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirectionMouse;
                 @DirectionMouse.performed -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirectionMouse;
                 @DirectionMouse.canceled -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnDirectionMouse;
+                @UiButton.started -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnUiButton;
+                @UiButton.performed -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnUiButton;
+                @UiButton.canceled -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnUiButton;
             }
             m_Wrapper.m_MainControllsActionsCallbackInterface = instance;
             if (instance != null)
@@ -502,6 +538,9 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                 @DirectionMouse.started += instance.OnDirectionMouse;
                 @DirectionMouse.performed += instance.OnDirectionMouse;
                 @DirectionMouse.canceled += instance.OnDirectionMouse;
+                @UiButton.started += instance.OnUiButton;
+                @UiButton.performed += instance.OnUiButton;
+                @UiButton.canceled += instance.OnUiButton;
             }
         }
     }
@@ -522,5 +561,6 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDirection(InputAction.CallbackContext context);
         void OnDirectionMouse(InputAction.CallbackContext context);
+        void OnUiButton(InputAction.CallbackContext context);
     }
 }

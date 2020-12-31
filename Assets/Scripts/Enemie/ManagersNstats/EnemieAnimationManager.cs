@@ -7,13 +7,24 @@ public class EnemieAnimationManager : MonoBehaviour
     private Animator enemieAnimator;
     private SpriteRenderer spriteRenderer;
 
+    private bool initialFlipValue;
+
     private EnemiesMain enemiesMain;
-    // Start is called before the first frame update
-    void Start()
+
+    private Color initialColour;
+
+    private void Awake()
     {
         enemieAnimator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemiesMain = GetComponent<EnemiesMain>();
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        initialColour = spriteRenderer.color;
+        initialFlipValue = spriteRenderer.flipX;
         enemiesMain.onEnemieStateChanger += ApplyAnimations;
         enemiesMain.onEnemieDirectionChange += ApplyDirectionIndication;
     }
@@ -61,11 +72,22 @@ public class EnemieAnimationManager : MonoBehaviour
         switch (direction)
         {
             case EnemiesMain.EnemieDirection.right:
-                spriteRenderer.flipX = false;
+                spriteRenderer.flipX = CalculateWhenToFlip();
                 break;
             case EnemiesMain.EnemieDirection.left:
-                spriteRenderer.flipX = true;
+                spriteRenderer.flipX = !CalculateWhenToFlip();
                 break;
+        }
+    }
+    private bool CalculateWhenToFlip()
+    {
+        if (initialFlipValue)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -73,6 +95,6 @@ public class EnemieAnimationManager : MonoBehaviour
     {
         spriteRenderer.color = colourEffe;
        yield return new  WaitForSeconds(0.5f);
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = initialColour;
     }
 }

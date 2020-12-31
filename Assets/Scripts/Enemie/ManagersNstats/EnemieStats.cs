@@ -18,16 +18,37 @@ public class EnemieStats : MonoBehaviour
 
     [Header("Enemie's rejuvanation rate while whivering")]
     [Tooltip("Will be used by whivering script")]
-    [Range(0.15f, 0.5f)]
+    [Range(0.5f, 10)]
     public float rateOfRejuvanation;
 
     [Header("The Distance To Escape considered Safe")]
     [Tooltip("Used By Avoid State")]
-    [Range(4,10)]
-    public float SafeDistance;
+    [Range(0.5f,10)]
+    public float SafeDistance=1f;
 
     [HideInInspector]
     public Rigidbody2D enemiesRigidBody;
+
+    [Header("Define the importance of enemy")]
+    public bool itsABoss;
+
+    [Header("Layers to check")]
+    [Tooltip("Used by behaviour manage script in order to define who is what")]
+    public LayerMask _PlayersLayer;
+    public LayerMask _EnemiesLayer;
+
+    [Header("Jump Ammount")]
+    [Tooltip("The ammount of force that is going to be added to the game object")]
+    public Vector2 jumpAmount;
+
+    [Header("Jump rate")]
+    [Tooltip("TimeItTakesToJump Maximum it will be bettween 2  constants (Min[x],Max[y])")]
+    [HideInInspector]
+    public Vector2 jumpRate;
+    [Range(0.5f, 5)]
+    public float jumpRateMin;
+    [Range(0.5f, 5)]
+    public float jumpRateMax;
 
     [Header("Players stats Object")]
     [Tooltip("ignore not hidden only for debug")]
@@ -36,7 +57,12 @@ public class EnemieStats : MonoBehaviour
     {
         playerStats = GameObject.FindObjectOfType<PlayerStats>();
         enemiesRigidBody = GetComponent<Rigidbody2D>();
+        jumpRate = new Vector2(jumpRateMin, jumpRateMax);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, SafeDistance);
     }
 
-   
+
 }

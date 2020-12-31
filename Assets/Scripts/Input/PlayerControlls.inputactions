@@ -44,6 +44,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "UiButton",
+                    "type": "Button",
+                    "id": "ddc98936-2e69-43e0-afa0-b106adc04783",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -341,6 +349,28 @@
                     "processors": "",
                     "groups": "SchemeGeneral",
                     "action": "DirectionMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ac6cec6-a6fb-4dd3-b89e-234649939582",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "SchemeGeneral",
+                    "action": "UiButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1eb92f85-5d35-4933-a250-a0474dd02314",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "SchemeGeneral",
+                    "action": "UiButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

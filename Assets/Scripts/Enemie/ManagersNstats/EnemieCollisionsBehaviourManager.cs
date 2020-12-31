@@ -11,6 +11,7 @@ public class EnemieCollisionsBehaviourManager : MonoBehaviour
     private EnemiesMain.EnemieStates currentBehabiour;
 
     private float timer;
+    private float jumpTimer;
     private Collider2D enemiesCollider;
     private Collider2D playersColliderToIgnore;
 
@@ -32,6 +33,7 @@ public class EnemieCollisionsBehaviourManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        jumpTimer += Time.deltaTime;
 
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -46,7 +48,7 @@ public class EnemieCollisionsBehaviourManager : MonoBehaviour
         {
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.gotHit);
         }
-
+ 
 
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -65,9 +67,18 @@ public class EnemieCollisionsBehaviourManager : MonoBehaviour
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.idle);
 
         }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemie"))
+        {
+            if (jumpTimer >= Random.Range(enemieStats.jumpRate.x, enemieStats.jumpRate.y))
+            {
+                enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.jump);
+                jumpTimer = 0;
+            }
 
-
-
+        }
     }
     private void PlayersColliderToIgnore()
     {

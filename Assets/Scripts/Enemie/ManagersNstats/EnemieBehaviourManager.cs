@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemieAnimationManager),typeof(EnemieCollisionsBehaviourManager),typeof(EnemieDirectionManager))]
+[RequireComponent(typeof(EnemieChase),typeof(EnemieAttack),typeof(EnemieStats))]
+[RequireComponent(typeof(EnemieDeath),typeof(EnemiesMain),typeof(EnemieGotHit))]
 public class EnemieBehaviourManager : MonoBehaviour
 {
     private EnemieStats enemieStats;
@@ -9,16 +12,7 @@ public class EnemieBehaviourManager : MonoBehaviour
 
     private float maxhHealth;
 
-    [Header("Define the importance of enemy")]
-    public bool itsABoss;
-
-    [Header("Layers to check")]
-    public LayerMask _PlayersLayer;
-    public LayerMask _EnemiesLayer;
-
-
-    [Header("Enemies Safe Distance")]
-    public float enemieRadius;
+   
 
     private bool playerInbound;
     private bool alone;
@@ -31,6 +25,7 @@ public class EnemieBehaviourManager : MonoBehaviour
         enemieStats = GetComponent<EnemieStats>();
         enemiesMain = GetComponent<EnemiesMain>();
         EnemiesMain.onInteract += CheckIntetactionsWithPlayer;
+        enemiesMain.onEnemieStateChanger += CheckAndApplyUniversalRequirements;
         maxhHealth = enemieStats.health;
     }
 
@@ -41,7 +36,7 @@ public class EnemieBehaviourManager : MonoBehaviour
         Chase();
         Death();
         CheckIfPlayerOrEnemieNear();
-        if (!itsABoss)
+        if (!enemieStats.itsABoss)
         {
             Avoid();
             Whiver();
@@ -49,7 +44,19 @@ public class EnemieBehaviourManager : MonoBehaviour
 
 
     }
+    private void CheckAndApplyUniversalRequirements(EnemiesMain.EnemieStates state)
+    {
+        if (state.Equals(EnemiesMain.EnemieStates.whiver) || state.Equals(EnemiesMain.EnemieStates.idle)
+            || state.Equals(EnemiesMain.EnemieStates.avoid)|| state.Equals(EnemiesMain.EnemieStates.jump))
+        {
+            Physics2D.IgnoreLayerCollision(8, 8);
 
+        }
+        else
+        {
+            Physics2D.IgnoreLayerCollision(8, 8, false);
+        }
+    }
     private void CheckIntetactionsWithPlayer(EnemiesMain.InteractionsWithPlayer interactions)
     {
         if (interactions.Equals(EnemiesMain.InteractionsWithPlayer.avoid))
@@ -63,7 +70,7 @@ public class EnemieBehaviourManager : MonoBehaviour
     }
     private void Chase()
     {
-        if (enemieStats.health > maxhHealth / 2&&!avoidingGroup)
+        if ((enemieStats.health > maxhHealth / 2 )||!alone && !avoidingGroup)
         {
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.chase);
         }
@@ -79,9 +86,16 @@ public class EnemieBehaviourManager : MonoBehaviour
     }
     private void Avoid()
     {
-        if ((enemieStats.health <= maxhHealth / 2 || avoidingGroup) && playerInbound)
-        {
-            enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.avoid);
+        if (((enemieStats.health <= maxhHealth / 2) || avoidingGroup))
+        {   
+            if (playerInbound)
+            {
+                enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.avoid);
+            }
+            else
+            {
+                enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.idle);
+            }
         }
 
 
@@ -89,16 +103,17 @@ public class EnemieBehaviourManager : MonoBehaviour
 
     private void Whiver()
     {
-        if (alone && enemieStats.health <= maxhHealth/4)
+        if (alone && enemieStats.health <= maxhHealth / 2)
         {
             enemiesMain.ChangeEnemieState(EnemiesMain.EnemieStates.whiver);
         }
+
     }
     private void CheckIfPlayerOrEnemieNear()
     {
-        Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, enemieRadius, _PlayersLayer);
-        Collider2D[] allies= Physics2D.OverlapCircleAll(transform.position, enemieRadius, _EnemiesLayer);
-        if (playerColliders.Length>0)
+        Collider2D[] playerColliders = Physics2D.OverlapCircleAll(transform.position, enemieStats.SafeDistance, enemieStats._PlayersLayer);
+        Collider2D[] allies = Physics2D.OverlapCircleAll(transform.position, enemieStats.SafeDistance, enemieStats._EnemiesLayer);
+        if (playerColliders.Length > 0)
         {
             playerInbound = true;
         }
@@ -119,10 +134,7 @@ public class EnemieBehaviourManager : MonoBehaviour
     {
         return Vector2.Distance(transform.position, enemieStats.playerStats.transform.position);
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, enemieRadius);
-    }
+
 
 
 }

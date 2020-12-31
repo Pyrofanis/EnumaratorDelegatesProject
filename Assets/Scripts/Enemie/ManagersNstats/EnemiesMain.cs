@@ -11,7 +11,8 @@ public class EnemiesMain : MonoBehaviour
         whiver,
         chase,
         death,
-        idle
+        idle,
+        jump
 
     }
     public enum EnemieDirection

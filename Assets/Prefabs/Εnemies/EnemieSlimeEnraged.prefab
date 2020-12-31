@@ -1,5 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7406702470685497067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78604261134817021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deed7218104fbfd498d6dcc71ed09c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3026292793494576105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78604261134817021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31221ef2c5e92d14e8baddb1467b9773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8779769258571796188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,15 +81,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8705251058757457959, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
       propertyPath: m_Color.b
-      value: 0.88759804
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8705251058757457959, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.3019054
       objectReference: {fileID: 0}
     - target: {fileID: 8705251058757457959, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
       propertyPath: dmg
@@ -76,12 +100,49 @@ PrefabInstance:
       value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
+      propertyPath: health
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
       propertyPath: attackRate
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
+      propertyPath: jumpRateMax
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
+      propertyPath: jumpRateMin
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
+      propertyPath: SafeDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
+      propertyPath: jumpAmount.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
+      propertyPath: jumpAmount.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
       propertyPath: rateOfRejuvanation
-      value: 0.3
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
+      propertyPath: _EnemiesLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705251058757457971, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
+      propertyPath: _PlayersLayer.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
+--- !u!1 &78604261134817021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8705251058757457953, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
+  m_PrefabInstance: {fileID: 8779769258571796188}
+  m_PrefabAsset: {fileID: 0}

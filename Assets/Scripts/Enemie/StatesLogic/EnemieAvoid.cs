@@ -27,11 +27,9 @@ public class EnemieAvoid : MonoBehaviour
         if (state.Equals(EnemiesMain.EnemieStates.avoid))
         {
             Avoiding = true;
-            Physics2D.IgnoreLayerCollision(8, 8);
         }
         else
         {
-            Physics2D.IgnoreLayerCollision(8, 8,false);
             Avoiding = false;
         }
     }

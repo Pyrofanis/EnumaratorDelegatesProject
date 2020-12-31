@@ -1,5 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2701487683537945465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8705251058757457953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deed7218104fbfd498d6dcc71ed09c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4992973396683323837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8705251058757457953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31221ef2c5e92d14e8baddb1467b9773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &731840786201152581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72,12 +96,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8279664395219194998, guid: 42bdbb0bb920b634c97503704a1a6632, type: 3}
+      propertyPath: health
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279664395219194998, guid: 42bdbb0bb920b634c97503704a1a6632, type: 3}
       propertyPath: attackRate
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8279664395219194998, guid: 42bdbb0bb920b634c97503704a1a6632, type: 3}
-      propertyPath: rateOfRejuvanation
+      propertyPath: jumpRateMax
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279664395219194998, guid: 42bdbb0bb920b634c97503704a1a6632, type: 3}
+      propertyPath: jumpRateMin
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279664395219194998, guid: 42bdbb0bb920b634c97503704a1a6632, type: 3}
+      propertyPath: jumpAmount.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279664395219194998, guid: 42bdbb0bb920b634c97503704a1a6632, type: 3}
+      propertyPath: jumpAmount.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279664395219194998, guid: 42bdbb0bb920b634c97503704a1a6632, type: 3}
+      propertyPath: rateOfRejuvanation
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8279664395219194999, guid: 42bdbb0bb920b634c97503704a1a6632, type: 3}
       propertyPath: m_Size.x
@@ -109,3 +153,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42bdbb0bb920b634c97503704a1a6632, type: 3}
+--- !u!1 &8705251058757457953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8279664395219194980, guid: 42bdbb0bb920b634c97503704a1a6632, type: 3}
+  m_PrefabInstance: {fileID: 731840786201152581}
+  m_PrefabAsset: {fileID: 0}
