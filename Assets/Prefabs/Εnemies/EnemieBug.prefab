@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2749b8bd56fd1494e961fb6ec9930d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 100
   speed: 2
   dmg: 30
   attackRate: 1.5
@@ -201,7 +201,7 @@ MonoBehaviour:
   _EnemiesLayer:
     serializedVersion: 2
     m_Bits: 256
-  enemieRadius: 0.52
+  enemieRadius: 0.3
 --- !u!114 &8279664395219195000
 MonoBehaviour:
   m_ObjectHideFlags: 0

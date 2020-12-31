@@ -40,6 +40,7 @@ public class EnemieDeath : MonoBehaviour
     }
     private IEnumerator Death()
     {
+        Spawner.deadEnemies++;
         enemieRb.constraints = RigidbodyConstraints2D.FreezeAll;
         enemiesCollider.enabled = false;
         enemieBehaviour.enabled = false;

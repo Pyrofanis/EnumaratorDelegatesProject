@@ -1,33 +1,41 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
-{   [Header("Waves")]
+{
+    [Header("Waves")]
     [Tooltip("through Waves scriptables")]
     [Min(1)]
     public SpawnManagerVariables[] spawnManagers;
+
     [Header("Waypoints To Instanciate to")]
     [Tooltip("Add all possible Waypoints")]
     [Min(1)]
     public Transform[] wayPoints;
 
+    private List<GameObject> _CurrentEnemiesActive;
 
-    private int currentEnemiesInSceneIndexer=0;
+    [HideInInspector]
+    public static int deadEnemies;
+    private int currentEnemiesInSceneIndexer = 0;
+    private int _CurrentWave = 0;
+    private int waypointIndexer = 0;
+    private int enemyTypeIndexer = 0;
 
     private float timeToSpawn, timeTillNextWave;
 
-    private List<GameObject> _CurrentEnemiesActive;
 
-    private int _CurrentWave=0;
-    [SerializeField]
-    int waypointIndexer = 0;
-    [SerializeField]
-    int enemyTypeIndexer = 0;
+  
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -39,10 +47,12 @@ public class Spawner : MonoBehaviour
     private void PrepareForNextWave()
     {
         if (timeTillNextWave >= spawnManagers[_CurrentWave].timeTillNextWave)
-        {   
+        {
             currentEnemiesInSceneIndexer = 0;
+            deadEnemies = 0;
             timeTillNextWave = 0;
-            if (_CurrentWave < spawnManagers.Length)
+            _CurrentEnemiesActive.Clear();
+            if (_CurrentWave < spawnManagers.Length - 1)
             {
                 _CurrentWave++;
 
@@ -51,7 +61,7 @@ public class Spawner : MonoBehaviour
     }
     private void CheckAndSpawn()
     {
-        if (currentEnemiesInSceneIndexer <= spawnManagers[_CurrentWave].maxEnemies)
+        if (currentEnemiesInSceneIndexer < spawnManagers[_CurrentWave].maxEnemies)
         {
             timeToSpawn += Time.deltaTime;
             if (timeToSpawn >= spawnManagers[_CurrentWave].spawnTime)
@@ -60,33 +70,16 @@ public class Spawner : MonoBehaviour
                 timeToSpawn = 0;
             }
         }
-        else if (EnemiesHaveDied())
-        {   
+        Debug.Log(deadEnemies + "Dead" + " MAxKhmatoz" + spawnManagers[_CurrentWave].maxEnemies);
+        if (EnemiesHaveDied())
+        {
             timeTillNextWave += Time.deltaTime;
+            Debug.Log(timeTillNextWave);
         }
     }
     private bool EnemiesHaveDied()
     {
-        //switch (_CurrentEnemiesActive.Count)
-        //{
-        //    case  _CurrentEnemiesActive.Count.Equals(0):
-        //        foreach (GameObject enemy in _CurrentEnemiesActive)
-        //        {
-        //            if (enemy == null)
-        //            {
-        //                _CurrentEnemiesActive.TrimExcess();
-        //            }
-        //        }
-        //        break;
-        //}
-        foreach (GameObject enemy in _CurrentEnemiesActive)
-        {
-            if (enemy == null)
-            {
-                _CurrentEnemiesActive.TrimExcess();
-            }
-        }
-        if (currentEnemiesInSceneIndexer == spawnManagers[_CurrentWave].maxEnemies&&_CurrentEnemiesActive.Count.Equals(0))
+        if (deadEnemies >= spawnManagers[_CurrentWave].maxEnemies)
         {
             return true;
         }
@@ -100,7 +93,7 @@ public class Spawner : MonoBehaviour
     {
         if (spawnManagers[_CurrentWave].enemyTypes.Count > 1)
         {
-            enemyTypeIndexer = Random.Range(0, spawnManagers[_CurrentWave].enemyTypes.Capacity + 1);
+            enemyTypeIndexer = Random.Range(0, spawnManagers[_CurrentWave].enemyTypes.Count);
         }
         else
         {
@@ -120,7 +113,7 @@ public class Spawner : MonoBehaviour
     }
     IEnumerator InstantiateEnemies()
     {
-        
+
 
         CalculateWhichEnemyToInstanciate();
         CalculateWhichWaypointToUse();
