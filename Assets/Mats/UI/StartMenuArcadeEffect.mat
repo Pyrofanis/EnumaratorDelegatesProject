@@ -51,7 +51,7 @@ Material:
     - Vector1_c6d48c0b76314d4d8f5918012d5389e6: 1000
     - Vector1_d5bd96e4b0e343bd8267bbc85e3f1d47: 0.3
     - Vector1_de5669c7a1eb4014a068572ac5db6281: 0.5
-    - _Alpha: 0.0000008940697
+    - _Alpha: 0.000007867813
     - _EnableExternalAlpha: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

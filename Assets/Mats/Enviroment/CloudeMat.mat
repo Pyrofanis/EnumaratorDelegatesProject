@@ -88,7 +88,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_C3CF804E: {r: 1, g: 0.7260463, b: 0, a: 0}
-    - _Color: {r: 0.045333587, g: 0.9445923, b: 0.30050132, a: 0}
+    - _Color: {r: 0.09605677, g: 0.88259727, b: 0.04876403, a: 0}
     - _ColorToModify: {r: 1, g: 0, b: 0.16862774, a: 1}
     - _EmissionColor: {r: 0.04411765, g: 0.04411765, b: 0.04411765, a: 1}
     - _MoveVector: {r: 1, g: 1, b: 0, a: 0}

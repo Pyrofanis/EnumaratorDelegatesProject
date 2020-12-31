@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StartMenuArcadeEffect Letters
-  m_Shader: {fileID: -6465566751694194690, guid: 5054d762c853e6c4a8607376496b8bb6, type: 3}
+  m_Name: PlayerHealthSlider
+  m_Shader: {fileID: -6465566751694194690, guid: 8541a804e24e013479fe93107a7ba4e1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 17426bf392612e445bc76a6a83d1182d, type: 3}
+        m_Texture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -48,14 +48,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_c6d48c0b76314d4d8f5918012d5389e6: 5000
-    - Vector1_d5bd96e4b0e343bd8267bbc85e3f1d47: 3
-    - Vector1_de5669c7a1eb4014a068572ac5db6281: 1
-    - _Alpha: 0.0000008940697
     - _EnableExternalAlpha: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EffeColor: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

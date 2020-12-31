@@ -33,7 +33,8 @@ public class Spawner : MonoBehaviour
     [HideInInspector]
     public static int deadEnemies;
 
-
+    [HideInInspector]
+    public static int completedCycles;
 
     
     private PlayerStats playerStats;
@@ -45,6 +46,7 @@ public class Spawner : MonoBehaviour
     {
         playerStats = GameObject.FindObjectOfType<PlayerStats>();
         _CurrentWave = 0;
+        completedCycles = 0;
     }
 
     // Update is called once per frame
@@ -132,6 +134,8 @@ public class Spawner : MonoBehaviour
     private void ACycleEnded()
     {
         _CurrentWave = 0;
+        completedCycles++;
+        playerStats.damage += playerStats.damageAddition;
     }
     IEnumerator PrepareNextWave()
     {

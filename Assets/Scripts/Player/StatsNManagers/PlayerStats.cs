@@ -48,4 +48,9 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("multiplied by delta time")]
     [Range(1,20)]
     public float rejuvanationHpAdd;
+
+    [Header("Damage addition Per Cycle")]
+    [Tooltip("It is going to be added at every completed Cycle")]
+    [Range(5,20)]
+    public int damageAddition;
 }

@@ -60,3 +60,6 @@ TagManager:
   - name: BackgroundDetailsFront
     uniqueID: 2403253259
     locked: 0
+  - name: PlayersHealthSlider
+    uniqueID: 1084436171
+    locked: 0
