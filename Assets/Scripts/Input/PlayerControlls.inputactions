@@ -52,6 +52,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Escape/ExtGame",
+                    "type": "Button",
+                    "id": "9c2a4f85-63dd-4c3b-8ac2-a25951bf2916",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -355,7 +363,7 @@
                 {
                     "name": "",
                     "id": "8ac6cec6-a6fb-4dd3-b89e-234649939582",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "SchemeGeneral",
@@ -371,6 +379,28 @@
                     "processors": "",
                     "groups": "SchemeGeneral",
                     "action": "UiButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8017798-2c2f-43d9-aafd-6caad617298f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "SchemeGeneral",
+                    "action": "Escape/ExtGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f3cda0c-78cb-4c95-a9d9-4dc205dcafc0",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "SchemeGeneral",
+                    "action": "Escape/ExtGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

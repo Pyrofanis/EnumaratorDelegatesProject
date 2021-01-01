@@ -65,6 +65,14 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Escape/ExtGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""9c2a4f85-63dd-4c3b-8ac2-a25951bf2916"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -368,7 +376,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8ac6cec6-a6fb-4dd3-b89e-234649939582"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""SchemeGeneral"",
@@ -384,6 +392,28 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""SchemeGeneral"",
                     ""action"": ""UiButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8017798-2c2f-43d9-aafd-6caad617298f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""SchemeGeneral"",
+                    ""action"": ""Escape/ExtGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f3cda0c-78cb-4c95-a9d9-4dc205dcafc0"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""SchemeGeneral"",
+                    ""action"": ""Escape/ExtGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -427,6 +457,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         m_MainControlls_Direction = m_MainControlls.FindAction("Direction", throwIfNotFound: true);
         m_MainControlls_DirectionMouse = m_MainControlls.FindAction("DirectionMouse", throwIfNotFound: true);
         m_MainControlls_UiButton = m_MainControlls.FindAction("UiButton", throwIfNotFound: true);
+        m_MainControlls_EscapeExtGame = m_MainControlls.FindAction("Escape/ExtGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -482,6 +513,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
     private readonly InputAction m_MainControlls_Direction;
     private readonly InputAction m_MainControlls_DirectionMouse;
     private readonly InputAction m_MainControlls_UiButton;
+    private readonly InputAction m_MainControlls_EscapeExtGame;
     public struct MainControllsActions
     {
         private @PlayerControlls m_Wrapper;
@@ -492,6 +524,7 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         public InputAction @Direction => m_Wrapper.m_MainControlls_Direction;
         public InputAction @DirectionMouse => m_Wrapper.m_MainControlls_DirectionMouse;
         public InputAction @UiButton => m_Wrapper.m_MainControlls_UiButton;
+        public InputAction @EscapeExtGame => m_Wrapper.m_MainControlls_EscapeExtGame;
         public InputActionMap Get() { return m_Wrapper.m_MainControlls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -519,6 +552,9 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                 @UiButton.started -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnUiButton;
                 @UiButton.performed -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnUiButton;
                 @UiButton.canceled -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnUiButton;
+                @EscapeExtGame.started -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnEscapeExtGame;
+                @EscapeExtGame.performed -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnEscapeExtGame;
+                @EscapeExtGame.canceled -= m_Wrapper.m_MainControllsActionsCallbackInterface.OnEscapeExtGame;
             }
             m_Wrapper.m_MainControllsActionsCallbackInterface = instance;
             if (instance != null)
@@ -541,6 +577,9 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
                 @UiButton.started += instance.OnUiButton;
                 @UiButton.performed += instance.OnUiButton;
                 @UiButton.canceled += instance.OnUiButton;
+                @EscapeExtGame.started += instance.OnEscapeExtGame;
+                @EscapeExtGame.performed += instance.OnEscapeExtGame;
+                @EscapeExtGame.canceled += instance.OnEscapeExtGame;
             }
         }
     }
@@ -562,5 +601,6 @@ public class @PlayerControlls : IInputActionCollection, IDisposable
         void OnDirection(InputAction.CallbackContext context);
         void OnDirectionMouse(InputAction.CallbackContext context);
         void OnUiButton(InputAction.CallbackContext context);
+        void OnEscapeExtGame(InputAction.CallbackContext context);
     }
 }

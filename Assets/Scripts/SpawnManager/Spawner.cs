@@ -41,12 +41,16 @@ public class Spawner : MonoBehaviour
 
 
 
+    private void Awake()
+    {
+        completedCycles = 0;
+
+    } 
     // Start is called before the first frame update
     void Start()
     {
         playerStats = GameObject.FindObjectOfType<PlayerStats>();
         _CurrentWave = 0;
-        completedCycles = 0;
     }
 
     // Update is called once per frame
@@ -136,6 +140,7 @@ public class Spawner : MonoBehaviour
         _CurrentWave = 0;
         completedCycles++;
         playerStats.damage += playerStats.damageAddition;
+        playerStats.SaveWhatDataNeeded();
     }
     IEnumerator PrepareNextWave()
     {

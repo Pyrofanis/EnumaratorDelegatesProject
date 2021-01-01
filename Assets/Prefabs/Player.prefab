@@ -229,11 +229,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7745478844268791952, guid: c9a259278b95dcd45bb987151409d48d, type: 3}
   boltDirection: {x: 0, y: 0, z: 0}
   attackRange: 0.5
-  attackResponsiveness: 10
+  attackResponsiveness: 2
   attackRate: 0.6
-  damage: 15
-  rejuvanationHpAdd: 0
-  damageAddition: 0
+  damage: 30
+  rejuvanationHpAdd: 20
+  damageAddition: 10
 --- !u!114 &52967152686405750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 0407dc0f27c1800449c6a48bd617d613, type: 2}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.7019608, g: 0.078431375, b: 0.078431375, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -520,7 +520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1175046094231124560
 RectTransform:
   m_ObjectHideFlags: 0

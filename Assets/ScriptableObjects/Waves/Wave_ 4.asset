@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd856f97cb79e34aa04c51134be227a, type: 3}
   m_Name: Wave_ 4
   m_EditorClassIdentifier: 
-  maxEnemies: 12
+  maxEnemies: 6
   enemyTypes:
   - {fileID: 8705251058757457953, guid: bb7f8cd327576f84bb89aeffa8132f48, type: 3}
   - {fileID: 78604261134817021, guid: 306bb98452bbcb34baba4ce0cf376b82, type: 3}

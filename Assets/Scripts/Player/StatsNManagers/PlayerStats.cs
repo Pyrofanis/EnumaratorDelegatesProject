@@ -53,4 +53,19 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("It is going to be added at every completed Cycle")]
     [Range(5,20)]
     public int damageAddition;
+
+    private void Start()
+    {
+        LoadData();
+    }
+    public void SaveWhatDataNeeded()
+    {
+        SaveSystem.SaveNeededData(this);
+    }
+    public void LoadData()
+    {
+        SaveData data = SaveSystem.LoadData();
+        damage += data.playerDmg;
+        Spawner.completedCycles = data.currentCompletedCycles;
+    }
 }
