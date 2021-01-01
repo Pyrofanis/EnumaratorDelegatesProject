@@ -9,7 +9,7 @@ public class SaveSystem
     public static void  SaveNeededData(PlayerStats playerStats)
     {
         BinaryFormatter binary = new BinaryFormatter();
-        string path = Application.dataPath + "/SavedData.EnumeratorsFoxWannaSpamThisBox";
+        string path = Application.dataPath + "/EnumeratorsFoxWannaSpamThisBox.data";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         SaveData data = new SaveData(playerStats);
@@ -18,7 +18,7 @@ public class SaveSystem
     }
     public static SaveData LoadData()
     {
-        string path = Application.dataPath + "/SavedData.EnumeratorsFoxWannaSpamThisBox";
+        string path = Application.dataPath + "/EnumeratorsFoxWannaSpamThisBox.data";
         if (File.Exists(path))
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
